@@ -63,7 +63,7 @@ chrome.runtime.onInstalled.addListener((details) => {
       if (languages && languages.length > 0) {
         const primaryLang = languages[0].split("-")[0];
         console.log(
-          `Helium Inline Translator: Detected primary language: ${primaryLang}. Setting as default.`
+          `Neutral Translate: Detected primary language: ${primaryLang}. Setting as default.`
         );
         chrome.storage.sync.set({ targetLanguage: primaryLang });
       } else {
@@ -83,7 +83,7 @@ async function translateWithStoredSettings(texts) {
   const targetLang = targetLanguage || "en";
 
   console.log(
-    `Helium Inline Translator: Translating to '${targetLang}' with ${provider.name}`
+    `Neutral Translate: Translating to '${targetLang}' with ${provider.name}`
   );
 
   return translateTexts(provider, texts, targetLang);
@@ -171,7 +171,7 @@ chrome.windows.onFocusChanged.addListener((windowId) => {
 async function ensureContentScript(tabId) {
   const [{ result: isLoaded }] = await chrome.scripting.executeScript({
     target: { tabId },
-    func: () => globalThis.heliumInlineTranslatorLoaded === true,
+    func: () => globalThis.neutralTranslateLoaded === true,
   });
   if (!isLoaded) {
     await chrome.scripting.executeScript({

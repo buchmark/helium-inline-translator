@@ -1,5 +1,5 @@
 // src/content.js
-globalThis.heliumInlineTranslatorLoaded = true;
+globalThis.neutralTranslateLoaded = true;
 
 const BATCH_CHAR_LIMIT = 4500;
 const BATCH_ITEM_LIMIT = 100;
@@ -227,7 +227,7 @@ async function translateBatch(batch, scope, onChunkTranslated) {
       onChunkTranslated(chunk, translatedTexts[index]);
     });
   } catch (error) {
-    console.error("Helium Inline Translator: Failed to translate a batch.", error);
+    console.error("Neutral Translate: Failed to translate a batch.", error);
   }
 }
 

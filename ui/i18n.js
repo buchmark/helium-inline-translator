@@ -1,8 +1,8 @@
-﻿// ui/i18n.js - Internationalization for Helium Inline Translator popup
+﻿// ui/i18n.js - Internationalization for Neutral Translate popup
 
 const translations = {
   "pt-BR": {
-    "popup.title": "Helium Inline Translator",
+    "popup.title": "Neutral Translate",
     "popup.description":
       "Traduza sem popups e de forma limpa páginas ou textos selecionados por atalhos rápidos.",
     "popup.selectLanguage": "Selecione um idioma",
@@ -20,7 +20,7 @@ const translations = {
     "popup.help": "Ajuda",
   },
   en: {
-    "popup.title": "Helium Inline Translator",
+    "popup.title": "Neutral Translate",
     "popup.description":
       "Translate pages or selected text cleanly without popups using quick shortcuts.",
     "popup.selectLanguage": "Select a language",
@@ -38,7 +38,7 @@ const translations = {
     "popup.help": "Help",
   },
   es: {
-    "popup.title": "Helium Inline Translator",
+    "popup.title": "Neutral Translate",
     "popup.description":
       "Traduce páginas o textos seleccionados sin ventanas emergentes y de forma limpia con atajos rápidos.",
     "popup.selectLanguage": "Selecciona un idioma",
@@ -56,7 +56,7 @@ const translations = {
     "popup.help": "Ayuda",
   },
   fr: {
-    "popup.title": "Helium Inline Translator",
+    "popup.title": "Neutral Translate",
     "popup.description":
       "Traduisez des pages ou des textes sélectionnés sans pop-ups, de manière épurée, avec des raccourcis rapides.",
     "popup.selectLanguage": "Sélectionnez une langue",
@@ -74,7 +74,7 @@ const translations = {
     "popup.help": "Aide",
   },
   de: {
-    "popup.title": "Helium Inline Translator",
+    "popup.title": "Neutral Translate",
     "popup.description":
       "Übersetze Seiten oder markierte Texte ohne Pop-ups, mit einem klaren Layout und schnellen Tastenkürzeln.",
     "popup.selectLanguage": "Wählen Sie eine Sprache",
@@ -92,7 +92,7 @@ const translations = {
     "popup.help": "Hilfe",
   },
   it: {
-    "popup.title": "Helium Inline Translator",
+    "popup.title": "Neutral Translate",
     "popup.description":
       "Traduci pagine o testi selezionati senza pop-up, in modo pulito, con scorciatoie rapide.",
     "popup.selectLanguage": "Seleziona una lingua",
@@ -110,7 +110,7 @@ const translations = {
     "popup.help": "Aiuto",
   },
   ja: {
-    "popup.title": "Helium Inline Translator",
+    "popup.title": "Neutral Translate",
     "popup.description":
       "ポップアップなしでページや選択したテキストをすっきり翻訳し、素早いショートカットで操作できます。",
     "popup.selectLanguage": "言語を選択",
@@ -128,7 +128,7 @@ const translations = {
     "popup.help": "ヘルプ",
   },
   ko: {
-    "popup.title": "Helium Inline Translator",
+    "popup.title": "Neutral Translate",
     "popup.description":
       "팝업 없이 깔끔하게 페이지나 선택한 텍스트를 빠른 단축키로 번역합니다.",
     "popup.selectLanguage": "언어 선택",
@@ -146,7 +146,7 @@ const translations = {
     "popup.help": "도움말",
   },
   "zh-CN": {
-    "popup.title": "Helium Inline Translator",
+    "popup.title": "Neutral Translate",
     "popup.description":
       "无需弹窗，使用快捷键即可干净利落地翻译页面或选定文本。",
     "popup.selectLanguage": "选择语言",
@@ -164,7 +164,7 @@ const translations = {
     "popup.help": "帮助",
   },
   "zh-TW": {
-    "popup.title": "Helium Inline Translator",
+    "popup.title": "Neutral Translate",
     "popup.description":
       "無需彈出視窗，使用快捷鍵即可乾淨俐落地翻譯頁面或選取文字。",
     "popup.selectLanguage": "選擇語言",
@@ -182,7 +182,7 @@ const translations = {
     "popup.help": "說明",
   },
   ru: {
-    "popup.title": "Helium Inline Translator",
+    "popup.title": "Neutral Translate",
     "popup.description":
       "Переводите страницы или выделенный текст без всплывающих окон, чисто и с быстрыми сочетаниями клавиш.",
     "popup.selectLanguage": "Выберите язык",
@@ -200,7 +200,7 @@ const translations = {
     "popup.help": "Помощь",
   },
   ar: {
-    "popup.title": "Helium Inline Translator",
+    "popup.title": "Neutral Translate",
     "popup.description":
       "ترجم صفحات أو نصوصًا محددة بلا نوافذ منبثقة وبشكل أنيق باستخدام اختصارات سريعة.",
     "popup.selectLanguage": "اختر لغة",
@@ -218,7 +218,7 @@ const translations = {
     "popup.help": "مساعدة",
   },
   hi: {
-    "popup.title": "Helium Inline Translator",
+    "popup.title": "Neutral Translate",
     "popup.description":
       "पृष्ठों या चयनित पाठ को बिना पॉपअप, साफ-सुथरे तरीके से तेज शॉर्टकट की मदद से अनुवाद करें।",
     "popup.selectLanguage": "एक भाषा चुनें",
@@ -236,7 +236,7 @@ const translations = {
     "popup.help": "सहायता",
   },
   nl: {
-    "popup.title": "Helium Inline Translator",
+    "popup.title": "Neutral Translate",
     "popup.description":
       "Vertaal pagina's of geselecteerde tekst zonder pop-ups, strak en met snelle sneltoetsen.",
     "popup.selectLanguage": "Selecteer een taal",
@@ -254,7 +254,7 @@ const translations = {
     "popup.help": "Hulp",
   },
   pl: {
-    "popup.title": "Helium Inline Translator",
+    "popup.title": "Neutral Translate",
     "popup.description":
       "Tłumacz strony lub zaznaczony tekst bez wyskakujących okien, przejrzyście i z szybkimi skrótami.",
     "popup.selectLanguage": "Wybierz język",
@@ -272,7 +272,7 @@ const translations = {
     "popup.help": "Pomoc",
   },
   tr: {
-    "popup.title": "Helium Inline Translator",
+    "popup.title": "Neutral Translate",
     "popup.description":
       "Pop-up olmadan, temiz bir görünümle ve hızlı kısayollarla sayfaları veya seçili metni çevirin.",
     "popup.selectLanguage": "Bir dil seçin",
@@ -290,7 +290,7 @@ const translations = {
     "popup.help": "Yardım",
   },
   sv: {
-    "popup.title": "Helium Inline Translator",
+    "popup.title": "Neutral Translate",
     "popup.description":
       "Översätt sidor eller markerad text utan popupfönster, rent och med snabba genvägar.",
     "popup.selectLanguage": "Välj ett språk",
@@ -308,7 +308,7 @@ const translations = {
     "popup.help": "Hjälp",
   },
   da: {
-    "popup.title": "Helium Inline Translator",
+    "popup.title": "Neutral Translate",
     "popup.description":
       "Oversæt sider eller markeret tekst uden pop op-vinduer, rent og med hurtige genveje.",
     "popup.selectLanguage": "Vælg et sprog",
@@ -326,7 +326,7 @@ const translations = {
     "popup.help": "Hjælp",
   },
   nb: {
-    "popup.title": "Helium Inline Translator",
+    "popup.title": "Neutral Translate",
     "popup.description":
       "Oversett sider eller valgt tekst uten popuper, ryddig og med raske snarveier.",
     "popup.selectLanguage": "Velg et språk",
@@ -344,7 +344,7 @@ const translations = {
     "popup.help": "Hjelp",
   },
   fi: {
-    "popup.title": "Helium Inline Translator",
+    "popup.title": "Neutral Translate",
     "popup.description":
       "Käännä sivuja tai valittua tekstiä ilman ponnahdusikkunoita, selkeästi ja nopeilla pikanäppäimillä.",
     "popup.selectLanguage": "Valitse kieli",
@@ -362,7 +362,7 @@ const translations = {
     "popup.help": "Ohje",
   },
   "pt-PT": {
-    "popup.title": "Helium Inline Translator",
+    "popup.title": "Neutral Translate",
     "popup.description":
       "Traduza páginas ou texto selecionado de forma limpa, sem popups, usando atalhos rápidos.",
     "popup.selectLanguage": "Selecione um idioma",
@@ -380,7 +380,7 @@ const translations = {
     "popup.help": "Ajuda",
   },
   uk: {
-    "popup.title": "Helium Inline Translator",
+    "popup.title": "Neutral Translate",
     "popup.description":
       "Перекладайте сторінки або вибраний текст чисто, без спливаючих вікон, за допомогою швидких клавіш.",
     "popup.selectLanguage": "Виберіть мову",
@@ -398,7 +398,7 @@ const translations = {
     "popup.help": "Допомога",
   },
   vi: {
-    "popup.title": "Helium Inline Translator",
+    "popup.title": "Neutral Translate",
     "popup.description":
       "Dịch trang hoặc văn bản đã chọn một cách gọn gàng, không có cửa sổ bật lên, sử dụng phím tắt nhanh.",
     "popup.selectLanguage": "Chọn ngôn ngữ",
@@ -416,7 +416,7 @@ const translations = {
     "popup.help": "Trợ giúp",
   },
   id: {
-    "popup.title": "Helium Inline Translator",
+    "popup.title": "Neutral Translate",
     "popup.description":
       "Terjemahkan halaman atau teks yang dipilih dengan bersih tanpa popup menggunakan pintasan cepat.",
     "popup.selectLanguage": "Pilih bahasa",
@@ -434,7 +434,7 @@ const translations = {
     "popup.help": "Bantuan",
   },
   th: {
-    "popup.title": "Helium Inline Translator",
+    "popup.title": "Neutral Translate",
     "popup.description":
       "แปลหน้าเว็บหรือข้อความที่เลือกอย่างสะอาดโดยไม่มีป๊อปอัปโดยใช้ทางลัดด่วน",
     "popup.selectLanguage": "เลือกภาษา",
@@ -452,7 +452,7 @@ const translations = {
     "popup.help": "ช่วยเหลือ",
   },
   bn: {
-    "popup.title": "Helium Inline Translator",
+    "popup.title": "Neutral Translate",
     "popup.description":
       "দ্রুত শর্টকাট ব্যবহার করে পপআপ ছাড়াই পরিষ্কারভাবে পৃষ্ঠা বা নির্বাচিত টেক্সট অনুবাদ করুন।",
     "popup.selectLanguage": "ভাষা নির্বাচন করুন",
@@ -470,7 +470,7 @@ const translations = {
     "popup.help": "সাহায্য",
   },
   he: {
-    "popup.title": "Helium Inline Translator",
+    "popup.title": "Neutral Translate",
     "popup.description":
       "תרגם דפים או טקסט נבחר בצורה נקייה ללא חלונות קופצים באמצעות קיצורי דרך מהירים.",
     "popup.selectLanguage": "בחר שפה",
@@ -488,7 +488,7 @@ const translations = {
     "popup.help": "עזרה",
   },
   fa: {
-    "popup.title": "Helium Inline Translator",
+    "popup.title": "Neutral Translate",
     "popup.description":
       "صفحات یا متن انتخاب شده را بدون پنجره بازشو با استفاده از میانبرهای سریع ترجمه کنید.",
     "popup.selectLanguage": "زبان را انتخاب کنید",
@@ -506,7 +506,7 @@ const translations = {
     "popup.help": "راهنما",
   },
   ur: {
-    "popup.title": "Helium Inline Translator",
+    "popup.title": "Neutral Translate",
     "popup.description":
       "فوری شارٹ کٹس کا استعمال کرتے ہوئے پاپ اپ کے بغیر صفحات یا منتخب متن کا صاف ترجمہ کریں۔",
     "popup.selectLanguage": "زبان منتخب کریں",
@@ -524,7 +524,7 @@ const translations = {
     "popup.help": "مدد",
   },
   el: {
-    "popup.title": "Helium Inline Translator",
+    "popup.title": "Neutral Translate",
     "popup.description":
       "Μεταφράστε σελίδες ή επιλεγμένο κείμενο καθαρά χωρίς αναδυόμενα παράθυρα χρησιμοποιώντας γρήγορες συντομεύσεις.",
     "popup.selectLanguage": "Επιλέξτε γλώσσα",
@@ -542,7 +542,7 @@ const translations = {
     "popup.help": "Βοήθεια",
   },
   cs: {
-    "popup.title": "Helium Inline Translator",
+    "popup.title": "Neutral Translate",
     "popup.description":
       "Překládejte stránky nebo vybraný text čistě bez vyskakovacích oken pomocí rychlých zkratek.",
     "popup.selectLanguage": "Vyberte jazyk",
@@ -560,7 +560,7 @@ const translations = {
     "popup.help": "Nápověda",
   },
   sk: {
-    "popup.title": "Helium Inline Translator",
+    "popup.title": "Neutral Translate",
     "popup.description":
       "Prekladajte stránky alebo vybraný text čisto bez vyskakovacích okien pomocou rýchlych skratiek.",
     "popup.selectLanguage": "Vyberte jazyk",
@@ -578,7 +578,7 @@ const translations = {
     "popup.help": "Pomoc",
   },
   hu: {
-    "popup.title": "Helium Inline Translator",
+    "popup.title": "Neutral Translate",
     "popup.description":
       "Fordítson oldalakat vagy kijelölt szöveget tisztán, felugró ablakok nélkül, gyorsbillentyűkkel.",
     "popup.selectLanguage": "Válasszon nyelvet",
@@ -596,7 +596,7 @@ const translations = {
     "popup.help": "Súgó",
   },
   ro: {
-    "popup.title": "Helium Inline Translator",
+    "popup.title": "Neutral Translate",
     "popup.description":
       "Traduceți pagini sau text selectat curat, fără ferestre pop-up, folosind comenzi rapide.",
     "popup.selectLanguage": "Selectați limba",
@@ -614,7 +614,7 @@ const translations = {
     "popup.help": "Ajutor",
   },
   bg: {
-    "popup.title": "Helium Inline Translator",
+    "popup.title": "Neutral Translate",
     "popup.description":
       "Превеждайте страници или избран текст чисто без изскачащи прозорци с бързи клавишни комбинации.",
     "popup.selectLanguage": "Изберете език",
@@ -632,7 +632,7 @@ const translations = {
     "popup.help": "Помощ",
   },
   hr: {
-    "popup.title": "Helium Inline Translator",
+    "popup.title": "Neutral Translate",
     "popup.description":
       "Prevedite stranice ili odabrani tekst čisto bez skočnih prozora koristeći brze prečace.",
     "popup.selectLanguage": "Odaberite jezik",
@@ -650,7 +650,7 @@ const translations = {
     "popup.help": "Pomoć",
   },
   ms: {
-    "popup.title": "Helium Inline Translator",
+    "popup.title": "Neutral Translate",
     "popup.description":
       "Terjemah halaman atau teks yang dipilih dengan bersih tanpa popup menggunakan pintasan pantas.",
     "popup.selectLanguage": "Pilih bahasa",
@@ -668,7 +668,7 @@ const translations = {
     "popup.help": "Bantuan",
   },
   tl: {
-    "popup.title": "Helium Inline Translator",
+    "popup.title": "Neutral Translate",
     "popup.description":
       "Isalin ang mga pahina o napiling teksto nang malinis na walang mga popup gamit ang mabilis na shortcut.",
     "popup.selectLanguage": "Pumili ng wika",
@@ -686,7 +686,7 @@ const translations = {
     "popup.help": "Tulong",
   },
   et: {
-    "popup.title": "Helium Inline Translator",
+    "popup.title": "Neutral Translate",
     "popup.description":
       "Tõlkige lehti või valitud teksti puhtalt ilma hüpikakendeta, kasutades kiireid otseteid.",
     "popup.selectLanguage": "Valige keel",
@@ -704,7 +704,7 @@ const translations = {
     "popup.help": "Abi",
   },
   lv: {
-    "popup.title": "Helium Inline Translator",
+    "popup.title": "Neutral Translate",
     "popup.description":
       "Tulkojiet lapas vai atlasīto tekstu tīri bez uznirstošajiem logiem, izmantojot ātrās saīsnes.",
     "popup.selectLanguage": "Izvēlieties valodu",
@@ -722,7 +722,7 @@ const translations = {
     "popup.help": "Palīdzība",
   },
   lt: {
-    "popup.title": "Helium Inline Translator",
+    "popup.title": "Neutral Translate",
     "popup.description":
       "Išverskite puslapius ar pasirinktą tekstą švariai be iššokančių langų naudodami greitus sparčiuosius klavišus.",
     "popup.selectLanguage": "Pasirinkite kalbą",
@@ -740,7 +740,7 @@ const translations = {
     "popup.help": "Pagalba",
   },
   sl: {
-    "popup.title": "Helium Inline Translator",
+    "popup.title": "Neutral Translate",
     "popup.description":
       "Prevedite strani ali izbrano besedilo čisto brez pojavnih oken z uporabo hitrih bližnjic.",
     "popup.selectLanguage": "Izberite jezik",
@@ -758,7 +758,7 @@ const translations = {
     "popup.help": "Pomoč",
   },
   is: {
-    "popup.title": "Helium Inline Translator",
+    "popup.title": "Neutral Translate",
     "popup.description":
       "Þýddu síður eða valinn texta hreint án sprettiglugga með flýtileiðum.",
     "popup.selectLanguage": "Veldu tungumál",
@@ -776,7 +776,7 @@ const translations = {
     "popup.help": "Hjálp",
   },
   lb: {
-    "popup.title": "Helium Inline Translator",
+    "popup.title": "Neutral Translate",
     "popup.description":
       "Iwwersetzen Säiten oder ausgewielte Texter propper ouni Popup-Fënsteren mat schnelle Tastekombinatiounen.",
     "popup.selectLanguage": "Wielt eng Sprooch",
@@ -794,7 +794,7 @@ const translations = {
     "popup.help": "Hëllef",
   },
   mt: {
-    "popup.title": "Helium Inline Translator",
+    "popup.title": "Neutral Translate",
     "popup.description":
       "Ittraduċi paġni jew test magħżul b'mod nadif mingħajr popups billi tuża shortcuts mgħaġġla.",
     "popup.selectLanguage": "Agħżel lingwa",
@@ -812,7 +812,7 @@ const translations = {
     "popup.help": "Għajnuna",
   },
   ca: {
-    "popup.title": "Helium Inline Translator",
+    "popup.title": "Neutral Translate",
     "popup.description":
       "Tradueix pàgines o text seleccionat de manera neta sense finestres emergents utilitzant dreceres ràpides.",
     "popup.selectLanguage": "Selecciona un idioma",
@@ -830,7 +830,7 @@ const translations = {
     "popup.help": "Ajuda",
   },
   af: {
-    "popup.title": "Helium Inline Translator",
+    "popup.title": "Neutral Translate",
     "popup.description":
       "Vertaal bladsye of geselekteerde teks skoon sonder opspringvensters deur vinnige kortpaaie te gebruik.",
     "popup.selectLanguage": "Kies 'n taal",
@@ -848,7 +848,7 @@ const translations = {
     "popup.help": "Hulp",
   },
   ga: {
-    "popup.title": "Helium Inline Translator",
+    "popup.title": "Neutral Translate",
     "popup.description":
       "Aistrigh leathanaigh nó téacs roghnaithe go néata gan fhuinneoga aníos ag baint úsáide as aicearraí tapa.",
     "popup.selectLanguage": "Roghnaigh teanga",
@@ -866,7 +866,7 @@ const translations = {
     "popup.help": "Cabhair",
   },
   sr: {
-    "popup.title": "Helium Inline Translator",
+    "popup.title": "Neutral Translate",
     "popup.description":
       "Преведите странице или изабрани текст без искачућих прозора користећи брзе пречице.",
     "popup.selectLanguage": "Изаберите језик",

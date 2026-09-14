@@ -1,11 +1,11 @@
 # GitHub Release Guide
 
-Follow these steps whenever you publish a new version of Helium Inline Translator on GitHub.
+Follow these steps whenever you publish a new version of Neutral Translate on GitHub.
 
 ## 1. Prepare your workspace
 
 ```powershell
-cd C:\Users\wesle\Desktop\heliumExtension
+cd Neutral-Translate
 ```
 
 Ensure all files are saved and the extension works in developer mode.

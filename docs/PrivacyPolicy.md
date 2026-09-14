@@ -1,8 +1,8 @@
-# Privacy Policy for Helium Inline Translator
+# Privacy Policy for Neutral Translate
 
 Updated: September 14, 2026
 
-Helium Inline Translator ("Extension") is maintained by buchmark and is based on Helium Inline Translator by Wesley Martins. This privacy policy explains what data the Extension sends, when, to whom, and why, when you use it in Chromium-based browsers such as Helium, Google Chrome, or Microsoft Edge.
+Neutral Translate ("Extension") is maintained by buchmark and is based on Helium Inline Translator by Wesley Martins. This privacy policy explains what data the Extension sends, when, to whom, and why, when you use it in Chromium-based browsers such as Helium, Google Chrome, or Microsoft Edge.
 
 ## Summary
 
@@ -114,4 +114,4 @@ This privacy policy may be updated from time to time. Changes will be posted in 
 
 ## Contact
 
-For questions about this policy or the Extension, open an issue at <https://github.com/buchmark/helium-inline-translator/issues>.
+For questions about this policy or the Extension, open an issue at <https://github.com/buchmark/Neutral-Translate/issues>.

@@ -1,17 +1,35 @@
-# Helium Inline Translator
+# Neutral Translate
 
-The project started when moving from Microsoft Edge to Helium Browser revealed the lack of a translation flow comparable to Edge’s native feature, so the extension was built to fill that gap—and it works seamlessly in any Chromium browser, including Chrome and Edge. Fast shortcuts keep the workflow fluid while the interface stays clean.
+Neutral Translate is a private inline translator made specifically for the Helium browser. It translates web pages and selected text in place, using the translation service you choose, and sends as little of your data as possible. Fast shortcuts keep the workflow fluid while the interface stays clean.
 
 - Helium Browser and most other Chromium-based browsers
 - Google Chrome
 - Microsoft Edge
 
-![A screenshot from the extension pop-up page](https://i.ibb.co/B23N9mVs/Camada-1.jpg)
+<p align="center">
+  <img src="docs/screenshots/popup-light.png" alt="Neutral Translate popup in light theme">
+  <img src="docs/screenshots/popup-dark.png" alt="Neutral Translate popup in dark theme">
+</p>
 
 <p align="center">
   Based on Helium Inline Translator by Wesley Martins
 </p>
 
+
+## Why "Neutral"
+
+Neutral Translate was built for the Helium browser to keep translation as private as the rest of your browsing: what you translate should not be linked to your Google, Microsoft, or Yandex account, and you should not be locked into one translation company. That is exactly why the translation provider is your choice: Google Translate, Microsoft Translator, or Yandex Translate. Switch services in the popup at any time, for example when another service handles a language better or when you trust a different company's privacy policy more. All three services are free and need no account or API key. The extension has no server of its own, so the only party that receives your text is the service you picked.
+
+## Privacy by Design
+
+- **No cookies:** translation requests are sent without cookies or login sessions, so your text is not tied to your signed-in Google, Microsoft, or Yandex account.
+- **Only what is needed:** each request contains just the text to translate and the target language. The page address, page title, browsing history, and your identity are never sent.
+- **Private input is never sent:** passwords and other form fields, text areas, message drafts, rich text editors, hidden text such as closed menus, and content inside embedded frames are skipped.
+- **Works only on request:** the extension reads a page only after you press a shortcut or use the right-click menu, and only in that tab.
+- **Minimal permissions:** network access is limited to the three translation services.
+- **No analytics, no ads, no trackers.**
+
+The text you translate is still sent to the service you selected, which handles it under its own privacy policy and sees your IP address. See the [privacy policy](docs/PrivacyPolicy.md) for details.
 
 ## Features
 
@@ -51,7 +69,7 @@ This extension uses Google Translate, Microsoft Translator, and Yandex Translate
 
 1. Clone this repository or download the latest release ZIP.
 2. Open `chrome://extensions` (or `edge://extensions`) and enable **Developer mode**.
-3. Click **Load unpacked** and choose the project root (`heliumExtension`).
+3. Click **Load unpacked** and choose the project root (`Neutral-Translate`).
 4. Use the refresh icon whenever you change local files.
 
 ## Development
@@ -77,7 +95,7 @@ docs/
 ## Privacy and Support
 
 - Privacy policy: `docs/PrivacyPolicy.md`
-- Issues: <https://github.com/buchmark/helium-inline-translator/issues>
+- Issues: <https://github.com/buchmark/Neutral-Translate/issues>
 
 ## License
 
