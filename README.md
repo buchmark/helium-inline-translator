@@ -3,21 +3,20 @@
 The project started when moving from Microsoft Edge to Helium Browser revealed the lack of a translation flow comparable to Edge’s native feature, so the extension was built to fill that gap—and it works seamlessly in any Chromium browser, including Chrome and Edge. Fast shortcuts keep the workflow fluid while the interface stays clean.
 
 - Helium Browser and most other Chromium-based browsers
-- [Google Chrome](https://chromewebstore.google.com/detail/helium-translator-inline/odibgflepadohfmpcemnjbhkionjkapk) 3+ ![Chrome Web Store](https://img.shields.io/chrome-web-store/users/odibgflepadohfmpcemnjbhkionjkapk?color=white&label=users&style=flat-square)
-- [Microsoft Edge](https://microsoftedge.microsoft.com/addons/detail/nbnmfihmepgnmpfaohjmdljphdkkmhoh) 1+ ![users count](https://img.shields.io/badge/dynamic/json?label=users&query=activeInstallCount&style=flat-square&color=white&url=https://microsoftedge.microsoft.com/addons/getproductdetailsbycrxid/nbnmfihmepgnmpfaohjmdljphdkkmhoh)
-- [Opera] soon...
+- Google Chrome
+- Microsoft Edge
 
 ![A screenshot from the extension pop-up page](https://i.ibb.co/B23N9mVs/Camada-1.jpg)
 
 <p align="center">
-  Made by <a href="https://github.com/wesleymartinsdv">Wesley Martins</a>
+  Based on Helium Inline Translator by Wesley Martins
 </p>
 
 
 ## Features
 
 - Inline translation for full pages and highlighted passages
-- Keyboard shortcuts: `Shift + Alt + Q` (selection) and `Shift + Alt + W` (page)
+- Keyboard shortcuts: `Shift + Alt + Q` (selection) and `Shift + Alt + W` (page), customizable at `chrome://extensions/shortcuts`
 - Minimal popup with light and dark themes
 - Favorite languages, quick search, and complete UI localization
 - Store metadata localized via `_locales/<lang>/messages.json`
@@ -57,7 +56,7 @@ This extension uses the Google Translate service to provide translations but is 
 ## Development
 
 - Popup assets live in `ui/` and shared styles in `css/`.
-- `src/background.js` manages keyboard shortcuts; `src/content.js` applies inline translations.
+- `src/background.js` handles keyboard shortcuts and the context menu, and injects `src/content.js` into the active tab on demand; `src/content.js` applies inline translations.
 - UI strings are defined in `ui/i18n.js`; store messages mirror them under `_locales/`.
 - Preferences persist via `chrome.storage.sync` and are restored on load.
 - Use the service worker inspector in `chrome://extensions` to review logs.
@@ -77,10 +76,8 @@ docs/
 ## Privacy and Support
 
 - Privacy policy: `docs/PrivacyPolicy.md`
-- LinkedIn: <https://www.linkedin.com/in/wesleymartinsDV>
-- GitHub: <https://github.com/wesleymartinsDV/helium-translator-inline>
+- Issues: <https://github.com/buchmark/helium-inline-translator/issues>
 
 ## License
 
-Feel free to contribute! Keep in mind that the license I chose
-is [GPL v3](https://github.com/wesleymartinsDV/helium-translator-inline/blob/main/LICENSE)
+Licensed under [GPL v3](LICENSE).
