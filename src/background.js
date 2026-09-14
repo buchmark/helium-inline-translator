@@ -1,4 +1,7 @@
 ﻿// src/background.js
+import { findTranslationProvider } from "./translation/providerRegistry.js";
+import { translateTexts } from "./translation/translateTexts.js";
+
 console.log("Background script starting...");
 
 const BADGE_TIMEOUT_MS = 4000;
@@ -73,51 +76,31 @@ chrome.runtime.onInstalled.addListener((details) => {
 const contextMenusReady = setupContextMenus();
 contextMenusReady.then(refreshPageMenuForActiveTab);
 
-async function translateText(text) {
-  const { targetLanguage } = await chrome.storage.sync.get("targetLanguage");
+async function translateWithStoredSettings(texts) {
+  const { translationProvider, targetLanguage } =
+    await chrome.storage.sync.get(["translationProvider", "targetLanguage"]);
+  const provider = findTranslationProvider(translationProvider);
   const targetLang = targetLanguage || "en";
 
-  // Debugging log to see which language is being used
   console.log(
-    `Helium Inline Translator: Translating to target language: '${targetLang}'`
+    `Helium Inline Translator: Translating to '${targetLang}' with ${provider.name}`
   );
 
-  const sourceLang = "auto";
-  const url = `https://translate.googleapis.com/translate_a/single?client=gtx&sl=${sourceLang}&tl=${targetLang}&dt=t&q=${encodeURIComponent(
-    text
-  )}`;
-  try {
-    const response = await fetch(url);
-    const data = await response.json();
-    if (data && data[0] && data[0][0] && data[0][0][0]) {
-      return {
-        success: true,
-        translatedText: data[0].map((segment) => segment[0]).join(""),
-      };
-    }
-    throw new Error("Invalid translation response format");
-  } catch (error) {
-    console.error("Translation Error:", error);
-    return {
-      success: false,
-      translatedText: "Erro na tradução.",
-    };
-  }
+  return translateTexts(provider, texts, targetLang);
 }
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   if (request.action === "getTranslation") {
-    translateText(request.text)
-      .then((result) => {
-        const tabId = sender?.tab?.id;
-        setBadgeState(result.success ? "success" : "error", tabId);
-        sendResponse({ translatedText: result.translatedText });
+    const tabId = sender?.tab?.id;
+    translateWithStoredSettings(request.texts)
+      .then((translatedTexts) => {
+        setBadgeState("success", tabId);
+        sendResponse({ translatedTexts });
       })
       .catch((error) => {
-        console.error("Message handler error:", error);
-        const tabId = sender?.tab?.id;
+        console.error("Translation Error:", error);
         setBadgeState("error", tabId);
-        sendResponse({ translatedText: "Erro na tradução." });
+        sendResponse({ error: error.message });
       });
     return true;
   }

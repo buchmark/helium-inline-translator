@@ -10,9 +10,14 @@
     "storage",
     "scripting"
   ],
-  "host_permissions": ["https://translate.googleapis.com/*"],
+  "host_permissions": [
+    "https://translate.googleapis.com/*",
+    "https://edge.microsoft.com/translate/*",
+    "https://translate.yandex.net/*"
+  ],
   "background": {
-    "service_worker": "src/background.js"
+    "service_worker": "src/background.js",
+    "type": "module"
   },
   "commands": {
     "translate-selection": {

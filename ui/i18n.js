@@ -6,6 +6,7 @@ const translations = {
     "popup.description":
       "Traduza sem popups e de forma limpa páginas ou textos selecionados por atalhos rápidos.",
     "popup.selectLanguage": "Selecione um idioma",
+    "popup.translationService": "Serviço de tradução",
     "popup.search": "Pesquisar",
     "popup.favorites": "Favoritos",
     "popup.allLanguages": "Todos os Idiomas",
@@ -23,6 +24,7 @@ const translations = {
     "popup.description":
       "Translate pages or selected text cleanly without popups using quick shortcuts.",
     "popup.selectLanguage": "Select a language",
+    "popup.translationService": "Translation service",
     "popup.search": "Search",
     "popup.favorites": "Favorites",
     "popup.allLanguages": "All Languages",
@@ -40,6 +42,7 @@ const translations = {
     "popup.description":
       "Traduce páginas o textos seleccionados sin ventanas emergentes y de forma limpia con atajos rápidos.",
     "popup.selectLanguage": "Selecciona un idioma",
+    "popup.translationService": "Servicio de traducción",
     "popup.search": "Buscar",
     "popup.favorites": "Favoritos",
     "popup.allLanguages": "Todos los idiomas",
@@ -57,6 +60,7 @@ const translations = {
     "popup.description":
       "Traduisez des pages ou des textes sélectionnés sans pop-ups, de manière épurée, avec des raccourcis rapides.",
     "popup.selectLanguage": "Sélectionnez une langue",
+    "popup.translationService": "Service de traduction",
     "popup.search": "Rechercher",
     "popup.favorites": "Favoris",
     "popup.allLanguages": "Toutes les langues",
@@ -74,6 +78,7 @@ const translations = {
     "popup.description":
       "Übersetze Seiten oder markierte Texte ohne Pop-ups, mit einem klaren Layout und schnellen Tastenkürzeln.",
     "popup.selectLanguage": "Wählen Sie eine Sprache",
+    "popup.translationService": "Übersetzungsdienst",
     "popup.search": "Suche",
     "popup.favorites": "Favoriten",
     "popup.allLanguages": "Alle Sprachen",
@@ -91,6 +96,7 @@ const translations = {
     "popup.description":
       "Traduci pagine o testi selezionati senza pop-up, in modo pulito, con scorciatoie rapide.",
     "popup.selectLanguage": "Seleziona una lingua",
+    "popup.translationService": "Servizio di traduzione",
     "popup.search": "Cerca",
     "popup.favorites": "Preferiti",
     "popup.allLanguages": "Tutte le lingue",
@@ -108,6 +114,7 @@ const translations = {
     "popup.description":
       "ポップアップなしでページや選択したテキストをすっきり翻訳し、素早いショートカットで操作できます。",
     "popup.selectLanguage": "言語を選択",
+    "popup.translationService": "翻訳サービス",
     "popup.search": "検索",
     "popup.favorites": "お気に入り",
     "popup.allLanguages": "すべての言語",
@@ -125,6 +132,7 @@ const translations = {
     "popup.description":
       "팝업 없이 깔끔하게 페이지나 선택한 텍스트를 빠른 단축키로 번역합니다.",
     "popup.selectLanguage": "언어 선택",
+    "popup.translationService": "번역 서비스",
     "popup.search": "검색",
     "popup.favorites": "즐겨찾기",
     "popup.allLanguages": "모든 언어",
@@ -142,6 +150,7 @@ const translations = {
     "popup.description":
       "无需弹窗，使用快捷键即可干净利落地翻译页面或选定文本。",
     "popup.selectLanguage": "选择语言",
+    "popup.translationService": "翻译服务",
     "popup.search": "搜索",
     "popup.favorites": "收藏夹",
     "popup.allLanguages": "所有语言",
@@ -159,6 +168,7 @@ const translations = {
     "popup.description":
       "無需彈出視窗，使用快捷鍵即可乾淨俐落地翻譯頁面或選取文字。",
     "popup.selectLanguage": "選擇語言",
+    "popup.translationService": "翻譯服務",
     "popup.search": "搜尋",
     "popup.favorites": "收藏夾",
     "popup.allLanguages": "所有語言",
@@ -176,6 +186,7 @@ const translations = {
     "popup.description":
       "Переводите страницы или выделенный текст без всплывающих окон, чисто и с быстрыми сочетаниями клавиш.",
     "popup.selectLanguage": "Выберите язык",
+    "popup.translationService": "Сервис перевода",
     "popup.search": "Поиск",
     "popup.favorites": "Избранное",
     "popup.allLanguages": "Все языки",
@@ -193,6 +204,7 @@ const translations = {
     "popup.description":
       "ترجم صفحات أو نصوصًا محددة بلا نوافذ منبثقة وبشكل أنيق باستخدام اختصارات سريعة.",
     "popup.selectLanguage": "اختر لغة",
+    "popup.translationService": "خدمة الترجمة",
     "popup.search": "بحث",
     "popup.favorites": "المفضلة",
     "popup.allLanguages": "جميع اللغات",
@@ -210,6 +222,7 @@ const translations = {
     "popup.description":
       "पृष्ठों या चयनित पाठ को बिना पॉपअप, साफ-सुथरे तरीके से तेज शॉर्टकट की मदद से अनुवाद करें।",
     "popup.selectLanguage": "एक भाषा चुनें",
+    "popup.translationService": "अनुवाद सेवा",
     "popup.search": "खोज",
     "popup.favorites": "पसंदीदा",
     "popup.allLanguages": "सभी भाषाएं",
@@ -227,6 +240,7 @@ const translations = {
     "popup.description":
       "Vertaal pagina's of geselecteerde tekst zonder pop-ups, strak en met snelle sneltoetsen.",
     "popup.selectLanguage": "Selecteer een taal",
+    "popup.translationService": "Vertaaldienst",
     "popup.search": "Zoeken",
     "popup.favorites": "Favorieten",
     "popup.allLanguages": "Alle talen",
@@ -244,6 +258,7 @@ const translations = {
     "popup.description":
       "Tłumacz strony lub zaznaczony tekst bez wyskakujących okien, przejrzyście i z szybkimi skrótami.",
     "popup.selectLanguage": "Wybierz język",
+    "popup.translationService": "Usługa tłumaczenia",
     "popup.search": "Szukaj",
     "popup.favorites": "Ulubione",
     "popup.allLanguages": "Wszystkie języki",
@@ -261,6 +276,7 @@ const translations = {
     "popup.description":
       "Pop-up olmadan, temiz bir görünümle ve hızlı kısayollarla sayfaları veya seçili metni çevirin.",
     "popup.selectLanguage": "Bir dil seçin",
+    "popup.translationService": "Çeviri hizmeti",
     "popup.search": "Ara",
     "popup.favorites": "Favoriler",
     "popup.allLanguages": "Tüm Diller",
@@ -278,6 +294,7 @@ const translations = {
     "popup.description":
       "Översätt sidor eller markerad text utan popupfönster, rent och med snabba genvägar.",
     "popup.selectLanguage": "Välj ett språk",
+    "popup.translationService": "Översättningstjänst",
     "popup.search": "Sök",
     "popup.favorites": "Favoriter",
     "popup.allLanguages": "Alla språk",
@@ -295,6 +312,7 @@ const translations = {
     "popup.description":
       "Oversæt sider eller markeret tekst uden pop op-vinduer, rent og med hurtige genveje.",
     "popup.selectLanguage": "Vælg et sprog",
+    "popup.translationService": "Oversættelsestjeneste",
     "popup.search": "Søg",
     "popup.favorites": "Favoritter",
     "popup.allLanguages": "Alle sprog",
@@ -312,6 +330,7 @@ const translations = {
     "popup.description":
       "Oversett sider eller valgt tekst uten popuper, ryddig og med raske snarveier.",
     "popup.selectLanguage": "Velg et språk",
+    "popup.translationService": "Oversettelsestjeneste",
     "popup.search": "Søk",
     "popup.favorites": "Favoritter",
     "popup.allLanguages": "Alle språk",
@@ -329,6 +348,7 @@ const translations = {
     "popup.description":
       "Käännä sivuja tai valittua tekstiä ilman ponnahdusikkunoita, selkeästi ja nopeilla pikanäppäimillä.",
     "popup.selectLanguage": "Valitse kieli",
+    "popup.translationService": "Käännöspalvelu",
     "popup.search": "Haku",
     "popup.favorites": "Suosikit",
     "popup.allLanguages": "Kaikki kielet",
@@ -346,6 +366,7 @@ const translations = {
     "popup.description":
       "Traduza páginas ou texto selecionado de forma limpa, sem popups, usando atalhos rápidos.",
     "popup.selectLanguage": "Selecione um idioma",
+    "popup.translationService": "Serviço de tradução",
     "popup.search": "Pesquisar",
     "popup.favorites": "Favoritos",
     "popup.allLanguages": "Todos os Idiomas",
@@ -363,6 +384,7 @@ const translations = {
     "popup.description":
       "Перекладайте сторінки або вибраний текст чисто, без спливаючих вікон, за допомогою швидких клавіш.",
     "popup.selectLanguage": "Виберіть мову",
+    "popup.translationService": "Сервіс перекладу",
     "popup.search": "Пошук",
     "popup.favorites": "Обране",
     "popup.allLanguages": "Всі мови",
@@ -380,6 +402,7 @@ const translations = {
     "popup.description":
       "Dịch trang hoặc văn bản đã chọn một cách gọn gàng, không có cửa sổ bật lên, sử dụng phím tắt nhanh.",
     "popup.selectLanguage": "Chọn ngôn ngữ",
+    "popup.translationService": "Dịch vụ dịch thuật",
     "popup.search": "Tìm kiếm",
     "popup.favorites": "Yêu thích",
     "popup.allLanguages": "Tất cả ngôn ngữ",
@@ -397,6 +420,7 @@ const translations = {
     "popup.description":
       "Terjemahkan halaman atau teks yang dipilih dengan bersih tanpa popup menggunakan pintasan cepat.",
     "popup.selectLanguage": "Pilih bahasa",
+    "popup.translationService": "Layanan terjemahan",
     "popup.search": "Cari",
     "popup.favorites": "Favorit",
     "popup.allLanguages": "Semua Bahasa",
@@ -414,6 +438,7 @@ const translations = {
     "popup.description":
       "แปลหน้าเว็บหรือข้อความที่เลือกอย่างสะอาดโดยไม่มีป๊อปอัปโดยใช้ทางลัดด่วน",
     "popup.selectLanguage": "เลือกภาษา",
+    "popup.translationService": "บริการแปลภาษา",
     "popup.search": "ค้นหา",
     "popup.favorites": "รายการโปรด",
     "popup.allLanguages": "ภาษาทั้งหมด",
@@ -431,6 +456,7 @@ const translations = {
     "popup.description":
       "দ্রুত শর্টকাট ব্যবহার করে পপআপ ছাড়াই পরিষ্কারভাবে পৃষ্ঠা বা নির্বাচিত টেক্সট অনুবাদ করুন।",
     "popup.selectLanguage": "ভাষা নির্বাচন করুন",
+    "popup.translationService": "অনুবাদ পরিষেবা",
     "popup.search": "অনুসন্ধান",
     "popup.favorites": "প্রিয়",
     "popup.allLanguages": "সব ভাষা",
@@ -448,6 +474,7 @@ const translations = {
     "popup.description":
       "תרגם דפים או טקסט נבחר בצורה נקייה ללא חלונות קופצים באמצעות קיצורי דרך מהירים.",
     "popup.selectLanguage": "בחר שפה",
+    "popup.translationService": "שירות תרגום",
     "popup.search": "חיפוש",
     "popup.favorites": "מועדפים",
     "popup.allLanguages": "כל השפות",
@@ -465,6 +492,7 @@ const translations = {
     "popup.description":
       "صفحات یا متن انتخاب شده را بدون پنجره بازشو با استفاده از میانبرهای سریع ترجمه کنید.",
     "popup.selectLanguage": "زبان را انتخاب کنید",
+    "popup.translationService": "سرویس ترجمه",
     "popup.search": "جستجو",
     "popup.favorites": "علاقه‌مندی‌ها",
     "popup.allLanguages": "همه زبان‌ها",
@@ -482,6 +510,7 @@ const translations = {
     "popup.description":
       "فوری شارٹ کٹس کا استعمال کرتے ہوئے پاپ اپ کے بغیر صفحات یا منتخب متن کا صاف ترجمہ کریں۔",
     "popup.selectLanguage": "زبان منتخب کریں",
+    "popup.translationService": "ترجمہ سروس",
     "popup.search": "تلاش",
     "popup.favorites": "پسندیدہ",
     "popup.allLanguages": "تمام زبانیں",
@@ -499,6 +528,7 @@ const translations = {
     "popup.description":
       "Μεταφράστε σελίδες ή επιλεγμένο κείμενο καθαρά χωρίς αναδυόμενα παράθυρα χρησιμοποιώντας γρήγορες συντομεύσεις.",
     "popup.selectLanguage": "Επιλέξτε γλώσσα",
+    "popup.translationService": "Υπηρεσία μετάφρασης",
     "popup.search": "Αναζήτηση",
     "popup.favorites": "Αγαπημένα",
     "popup.allLanguages": "Όλες οι γλώσσες",
@@ -516,6 +546,7 @@ const translations = {
     "popup.description":
       "Překládejte stránky nebo vybraný text čistě bez vyskakovacích oken pomocí rychlých zkratek.",
     "popup.selectLanguage": "Vyberte jazyk",
+    "popup.translationService": "Překladová služba",
     "popup.search": "Hledat",
     "popup.favorites": "Oblíbené",
     "popup.allLanguages": "Všechny jazyky",
@@ -533,6 +564,7 @@ const translations = {
     "popup.description":
       "Prekladajte stránky alebo vybraný text čisto bez vyskakovacích okien pomocou rýchlych skratiek.",
     "popup.selectLanguage": "Vyberte jazyk",
+    "popup.translationService": "Prekladová služba",
     "popup.search": "Hľadať",
     "popup.favorites": "Obľúbené",
     "popup.allLanguages": "Všetky jazyky",
@@ -550,6 +582,7 @@ const translations = {
     "popup.description":
       "Fordítson oldalakat vagy kijelölt szöveget tisztán, felugró ablakok nélkül, gyorsbillentyűkkel.",
     "popup.selectLanguage": "Válasszon nyelvet",
+    "popup.translationService": "Fordítási szolgáltatás",
     "popup.search": "Keresés",
     "popup.favorites": "Kedvencek",
     "popup.allLanguages": "Összes nyelv",
@@ -567,6 +600,7 @@ const translations = {
     "popup.description":
       "Traduceți pagini sau text selectat curat, fără ferestre pop-up, folosind comenzi rapide.",
     "popup.selectLanguage": "Selectați limba",
+    "popup.translationService": "Serviciu de traducere",
     "popup.search": "Căutare",
     "popup.favorites": "Favorite",
     "popup.allLanguages": "Toate limbile",
@@ -584,6 +618,7 @@ const translations = {
     "popup.description":
       "Превеждайте страници или избран текст чисто без изскачащи прозорци с бързи клавишни комбинации.",
     "popup.selectLanguage": "Изберете език",
+    "popup.translationService": "Услуга за превод",
     "popup.search": "Търсене",
     "popup.favorites": "Любими",
     "popup.allLanguages": "Всички езици",
@@ -601,6 +636,7 @@ const translations = {
     "popup.description":
       "Prevedite stranice ili odabrani tekst čisto bez skočnih prozora koristeći brze prečace.",
     "popup.selectLanguage": "Odaberite jezik",
+    "popup.translationService": "Usluga prevođenja",
     "popup.search": "Pretraži",
     "popup.favorites": "Favoriti",
     "popup.allLanguages": "Svi jezici",
@@ -618,6 +654,7 @@ const translations = {
     "popup.description":
       "Terjemah halaman atau teks yang dipilih dengan bersih tanpa popup menggunakan pintasan pantas.",
     "popup.selectLanguage": "Pilih bahasa",
+    "popup.translationService": "Perkhidmatan terjemahan",
     "popup.search": "Cari",
     "popup.favorites": "Kegemaran",
     "popup.allLanguages": "Semua Bahasa",
@@ -635,6 +672,7 @@ const translations = {
     "popup.description":
       "Isalin ang mga pahina o napiling teksto nang malinis na walang mga popup gamit ang mabilis na shortcut.",
     "popup.selectLanguage": "Pumili ng wika",
+    "popup.translationService": "Serbisyo ng pagsasalin",
     "popup.search": "Maghanap",
     "popup.favorites": "Mga Paborito",
     "popup.allLanguages": "Lahat ng Wika",
@@ -652,6 +690,7 @@ const translations = {
     "popup.description":
       "Tõlkige lehti või valitud teksti puhtalt ilma hüpikakendeta, kasutades kiireid otseteid.",
     "popup.selectLanguage": "Valige keel",
+    "popup.translationService": "Tõlketeenus",
     "popup.search": "Otsi",
     "popup.favorites": "Lemmikud",
     "popup.allLanguages": "Kõik keeled",
@@ -669,6 +708,7 @@ const translations = {
     "popup.description":
       "Tulkojiet lapas vai atlasīto tekstu tīri bez uznirstošajiem logiem, izmantojot ātrās saīsnes.",
     "popup.selectLanguage": "Izvēlieties valodu",
+    "popup.translationService": "Tulkošanas pakalpojums",
     "popup.search": "Meklēt",
     "popup.favorites": "Izlase",
     "popup.allLanguages": "Visas valodas",
@@ -686,6 +726,7 @@ const translations = {
     "popup.description":
       "Išverskite puslapius ar pasirinktą tekstą švariai be iššokančių langų naudodami greitus sparčiuosius klavišus.",
     "popup.selectLanguage": "Pasirinkite kalbą",
+    "popup.translationService": "Vertimo paslauga",
     "popup.search": "Ieškoti",
     "popup.favorites": "Mėgstamiausi",
     "popup.allLanguages": "Visos kalbos",
@@ -703,6 +744,7 @@ const translations = {
     "popup.description":
       "Prevedite strani ali izbrano besedilo čisto brez pojavnih oken z uporabo hitrih bližnjic.",
     "popup.selectLanguage": "Izberite jezik",
+    "popup.translationService": "Prevajalska storitev",
     "popup.search": "Iskanje",
     "popup.favorites": "Priljubljeni",
     "popup.allLanguages": "Vsi jeziki",
@@ -720,6 +762,7 @@ const translations = {
     "popup.description":
       "Þýddu síður eða valinn texta hreint án sprettiglugga með flýtileiðum.",
     "popup.selectLanguage": "Veldu tungumál",
+    "popup.translationService": "Þýðingarþjónusta",
     "popup.search": "Leita",
     "popup.favorites": "Eftirlæti",
     "popup.allLanguages": "Öll tungumál",
@@ -737,6 +780,7 @@ const translations = {
     "popup.description":
       "Iwwersetzen Säiten oder ausgewielte Texter propper ouni Popup-Fënsteren mat schnelle Tastekombinatiounen.",
     "popup.selectLanguage": "Wielt eng Sprooch",
+    "popup.translationService": "Iwwersetzungsdéngscht",
     "popup.search": "Sichen",
     "popup.favorites": "Favoriten",
     "popup.allLanguages": "All Sproochen",
@@ -754,6 +798,7 @@ const translations = {
     "popup.description":
       "Ittraduċi paġni jew test magħżul b'mod nadif mingħajr popups billi tuża shortcuts mgħaġġla.",
     "popup.selectLanguage": "Agħżel lingwa",
+    "popup.translationService": "Servizz tat-traduzzjoni",
     "popup.search": "Fittex",
     "popup.favorites": "Favoriti",
     "popup.allLanguages": "Il-lingwi kollha",
@@ -771,6 +816,7 @@ const translations = {
     "popup.description":
       "Tradueix pàgines o text seleccionat de manera neta sense finestres emergents utilitzant dreceres ràpides.",
     "popup.selectLanguage": "Selecciona un idioma",
+    "popup.translationService": "Servei de traducció",
     "popup.search": "Cercar",
     "popup.favorites": "Preferits",
     "popup.allLanguages": "Tots els idiomes",
@@ -788,6 +834,7 @@ const translations = {
     "popup.description":
       "Vertaal bladsye of geselekteerde teks skoon sonder opspringvensters deur vinnige kortpaaie te gebruik.",
     "popup.selectLanguage": "Kies 'n taal",
+    "popup.translationService": "Vertaaldiens",
     "popup.search": "Soek",
     "popup.favorites": "Gunstelinge",
     "popup.allLanguages": "Alle tale",
@@ -805,6 +852,7 @@ const translations = {
     "popup.description":
       "Aistrigh leathanaigh nó téacs roghnaithe go néata gan fhuinneoga aníos ag baint úsáide as aicearraí tapa.",
     "popup.selectLanguage": "Roghnaigh teanga",
+    "popup.translationService": "Seirbhís aistriúcháin",
     "popup.search": "Cuardaigh",
     "popup.favorites": "Ceanáin",
     "popup.allLanguages": "Gach Teanga",
@@ -822,6 +870,7 @@ const translations = {
     "popup.description":
       "Преведите странице или изабрани текст без искачућих прозора користећи брзе пречице.",
     "popup.selectLanguage": "Изаберите језик",
+    "popup.translationService": "Услуга превођења",
     "popup.search": "Претрага",
     "popup.favorites": "Омиљени",
     "popup.allLanguages": "Сви језици",

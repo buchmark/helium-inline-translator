@@ -16,6 +16,7 @@ The project started when moving from Microsoft Edge to Helium Browser revealed t
 ## Features
 
 - Inline translation for full pages and highlighted passages
+- Free translation services without an API key: Google, Microsoft, and Yandex, selectable in the popup
 - Keyboard shortcuts: `Shift + Alt + Q` (selection) and `Shift + Alt + W` (page), customizable at `chrome://extensions/shortcuts`
 - Minimal popup with light and dark themes
 - Favorite languages, quick search, and complete UI localization
@@ -39,7 +40,7 @@ The project started when moving from Microsoft Edge to Helium Browser revealed t
 
 ## Disclaimer
 
-This extension uses the Google Translate service to provide translations but is not affiliated with, endorsed, or sponsored by Google. All copyrights and trademarks belong to their respective owners.
+This extension uses Google Translate, Microsoft Translator, and Yandex Translate to provide translations but is not affiliated with, endorsed, or sponsored by Google, Microsoft, or Yandex. All copyrights and trademarks belong to their respective owners.
 
 ## Known Limitations
 
@@ -57,6 +58,7 @@ This extension uses the Google Translate service to provide translations but is 
 
 - Popup assets live in `ui/` and shared styles in `css/`.
 - `src/background.js` handles keyboard shortcuts and the context menu, and injects `src/content.js` into the active tab on demand; `src/content.js` applies inline translations.
+- `src/translation/providers/` holds one adapter per translation service; register new ones in `src/translation/providerRegistry.js`.
 - UI strings are defined in `ui/i18n.js`; store messages mirror them under `_locales/`.
 - Preferences persist via `chrome.storage.sync` and are restored on load.
 - Use the service worker inspector in `chrome://extensions` to review logs.
