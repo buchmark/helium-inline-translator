@@ -7,5 +7,8 @@
   },
   "contextTranslateSelection": {
     "message": "Tradueix la selecció"
+  },
+  "contextTranslateToOriginal": {
+    "message": "Tradueix a l'idioma original"
   }
 }

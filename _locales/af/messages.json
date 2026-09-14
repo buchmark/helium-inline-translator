@@ -7,5 +7,8 @@
   },
   "contextTranslateSelection": {
     "message": "Vertaal keuse"
+  },
+  "contextTranslateToOriginal": {
+    "message": "Vertaal na oorspronklike taal"
   }
 }

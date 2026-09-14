@@ -7,5 +7,8 @@
   },
   "contextTranslateSelection": {
     "message": "चयन का अनुवाद करें"
+  },
+  "contextTranslateToOriginal": {
+    "message": "मूल भाषा में अनुवाद करें"
   }
 }

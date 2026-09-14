@@ -50,6 +50,8 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     }
   } else if (request.action === "revert-translation") {
     revertPageTranslation();
+  } else if (request.action === "get-page-state") {
+    sendResponse({ isPageTranslated });
   }
   return true;
 });
@@ -193,7 +195,7 @@ async function handleFullPageTranslation() {
   console.log(
     "Helium Inline Translator: Starting full page translation with batching.",
   );
-  isPageTranslated = true;
+  setPageTranslated(true);
   currentTargetLanguage = await getTargetLanguageFromStorage();
 
   const walker = document.createTreeWalker(
@@ -367,5 +369,13 @@ function revertPageTranslation() {
     }
   }
   pageOriginals.clear();
-  isPageTranslated = false;
+  setPageTranslated(false);
+}
+
+function setPageTranslated(value) {
+  isPageTranslated = value;
+  chrome.runtime.sendMessage({
+    action: "page-translation-changed",
+    isPageTranslated: value,
+  });
 }

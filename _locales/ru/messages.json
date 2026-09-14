@@ -7,5 +7,8 @@
   },
   "contextTranslateSelection": {
     "message": "Перевести выделение"
+  },
+  "contextTranslateToOriginal": {
+    "message": "Перевести на исходный язык"
   }
 }

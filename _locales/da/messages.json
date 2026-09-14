@@ -7,5 +7,8 @@
   },
   "contextTranslateSelection": {
     "message": "Oversæt markering"
+  },
+  "contextTranslateToOriginal": {
+    "message": "Oversæt til originalsprog"
   }
 }

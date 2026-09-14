@@ -7,5 +7,8 @@
   },
   "contextTranslateSelection": {
     "message": "翻译选择"
+  },
+  "contextTranslateToOriginal": {
+    "message": "翻译为原始语言"
   }
 }

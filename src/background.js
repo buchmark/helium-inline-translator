@@ -32,26 +32,28 @@ function setBadgeState(state, tabId) {
 }
 
 function setupContextMenus() {
-  chrome.contextMenus.removeAll(() => {
-    console.log("Context menus (re)created.");
-    // This menu appears only when you right-click on the page without selecting text
-    chrome.contextMenus.create({
-      id: "translate-page",
-      title: chrome.i18n.getMessage("contextTranslatePage"),
-      contexts: ["page"],
-    });
-    // This menu appears only when you right-click on selected text
-    chrome.contextMenus.create({
-      id: "translate-selection",
-      title: chrome.i18n.getMessage("contextTranslateSelection"),
-      contexts: ["selection"],
+  return new Promise((resolve) => {
+    chrome.contextMenus.removeAll(() => {
+      console.log("Context menus (re)created.");
+      // This menu appears only when you right-click on the page without selecting text
+      chrome.contextMenus.create({
+        id: "translate-page",
+        title: chrome.i18n.getMessage("contextTranslatePage"),
+        contexts: ["page"],
+      });
+      // This menu appears only when you right-click on selected text
+      chrome.contextMenus.create({
+        id: "translate-selection",
+        title: chrome.i18n.getMessage("contextTranslateSelection"),
+        contexts: ["selection"],
+      });
+      resolve();
     });
   });
 }
 
 chrome.runtime.onInstalled.addListener((details) => {
   console.log("Extension installed/updated.");
-  setupContextMenus();
 
   if (details.reason === "install") {
     chrome.i18n.getAcceptLanguages((languages) => {
@@ -68,7 +70,8 @@ chrome.runtime.onInstalled.addListener((details) => {
   }
 });
 
-setupContextMenus();
+const contextMenusReady = setupContextMenus();
+contextMenusReady.then(refreshPageMenuForActiveTab);
 
 async function translateText(text) {
   const { targetLanguage } = await chrome.storage.sync.get("targetLanguage");
@@ -117,6 +120,59 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         sendResponse({ translatedText: "Erro na tradução." });
       });
     return true;
+  }
+  if (request.action === "page-translation-changed" && sender.tab?.active) {
+    updatePageMenuTitle(request.isPageTranslated);
+  }
+});
+
+async function updatePageMenuTitle(isPageTranslated) {
+  await contextMenusReady;
+  chrome.contextMenus.update("translate-page", {
+    title: chrome.i18n.getMessage(
+      isPageTranslated ? "contextTranslateToOriginal" : "contextTranslatePage"
+    ),
+  });
+}
+
+async function isPageTranslatedInTab(tabId) {
+  try {
+    const response = await chrome.tabs.sendMessage(tabId, {
+      action: "get-page-state",
+    });
+    return response?.isPageTranslated === true;
+  } catch {
+    return false;
+  }
+}
+
+async function refreshPageMenuForTab(tabId) {
+  updatePageMenuTitle(await isPageTranslatedInTab(tabId));
+}
+
+async function refreshPageMenuForActiveTab() {
+  const [tab] = await chrome.tabs.query({
+    active: true,
+    lastFocusedWindow: true,
+  });
+  if (tab) {
+    refreshPageMenuForTab(tab.id);
+  }
+}
+
+chrome.tabs.onActivated.addListener(({ tabId }) => {
+  refreshPageMenuForTab(tabId);
+});
+
+chrome.tabs.onUpdated.addListener((tabId, changeInfo, tab) => {
+  if (changeInfo.status === "complete" && tab.active) {
+    refreshPageMenuForTab(tabId);
+  }
+});
+
+chrome.windows.onFocusChanged.addListener((windowId) => {
+  if (windowId !== chrome.windows.WINDOW_ID_NONE) {
+    refreshPageMenuForActiveTab();
   }
 });
 

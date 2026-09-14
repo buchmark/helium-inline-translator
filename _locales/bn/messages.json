@@ -7,5 +7,8 @@
   },
   "contextTranslateSelection": {
     "message": "নির্বাচন অনুবাদ করুন"
+  },
+  "contextTranslateToOriginal": {
+    "message": "মূল ভাষায় অনুবাদ করুন"
   }
 }

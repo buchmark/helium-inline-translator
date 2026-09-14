@@ -7,5 +7,8 @@
   },
   "contextTranslateSelection": {
     "message": "Terjemah pilihan"
+  },
+  "contextTranslateToOriginal": {
+    "message": "Terjemah ke bahasa asal"
   }
 }
