@@ -122,7 +122,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   let flagEmojiSupported = true;
   let searchTerm = "";
 
-  const body = document.body;
   const themeToggle = document.getElementById("themeToggle");
   const selectedLangBtn = document.getElementById("selectedLang");
   const dropdown = document.getElementById("dropdown");
@@ -132,6 +131,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   const favoritesSection = document.getElementById("favoritesSection");
   const favoritesList = document.getElementById("favoritesList");
   const allLanguages = document.getElementById("allLanguages");
+  const closeDropdownButton = document.getElementById("closeDropdown");
+  const versionLabel = document.getElementById("version");
 
   // --- Preference Management ---
   async function savePreferences() {
@@ -198,8 +199,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   function updateUIForPreferences() {
-    body.className = isDark ? "dark" : "light";
-    themeToggle.textContent = isDark ? "☀️" : "🌙";
+    applyTheme();
 
     const lang = languages.find((l) => l.code === selectedLangCode);
     if (lang) {
@@ -219,10 +219,13 @@ document.addEventListener("DOMContentLoaded", async () => {
   }
 
   // --- UI Logic ---
+  function applyTheme() {
+    document.documentElement.dataset.theme = isDark ? "dark" : "light";
+  }
+
   function toggleTheme() {
     isDark = !isDark;
-    body.className = isDark ? "dark" : "light";
-    themeToggle.textContent = isDark ? "☀️" : "🌙";
+    applyTheme();
     savePreferences();
   }
 
@@ -237,12 +240,16 @@ document.addEventListener("DOMContentLoaded", async () => {
     renderLanguages();
   }
 
+  function closeDropdown() {
+    dropdown.classList.remove("active");
+  }
+
   async function selectLanguage(code) {
     selectedLangCode = code;
     const lang = languages.find((l) => l.code === code);
     setFlagContent(langFlag, lang.flag);
     langName.textContent = lang.name;
-    dropdown.classList.remove("active");
+    closeDropdown();
     searchBox.value = "";
     searchTerm = "";
     await savePreferences();
@@ -298,7 +305,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     const star = document.createElement("div");
     star.className =
       "star" + (favorites.includes(lang.code.split("-")[0]) ? " active" : "");
-    star.textContent = "♥";
+    star.appendChild(createIcon("heart"));
     star.addEventListener("click", (e) => {
       e.stopPropagation();
       toggleFavorite(lang.code.split("-")[0]);
@@ -310,6 +317,16 @@ document.addEventListener("DOMContentLoaded", async () => {
     option.addEventListener("click", () => selectLanguage(lang.code));
 
     return option;
+  }
+
+  function createIcon(name) {
+    const svgNamespace = "http://www.w3.org/2000/svg";
+    const icon = document.createElementNS(svgNamespace, "svg");
+    icon.classList.add("icon");
+    const use = document.createElementNS(svgNamespace, "use");
+    use.setAttribute("href", `#icon-${name}`);
+    icon.appendChild(use);
+    return icon;
   }
 
   // --- Event Listeners ---
@@ -331,11 +348,21 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   document.addEventListener("click", (e) => {
     if (!e.target.closest(".language-selector")) {
-      dropdown.classList.remove("active");
+      closeDropdown();
+    }
+  });
+
+  closeDropdownButton.addEventListener("click", closeDropdown);
+
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "Escape" && dropdown.classList.contains("active")) {
+      e.preventDefault();
+      closeDropdown();
     }
   });
 
   // --- Initial Load ---
+  versionLabel.textContent = `v${chrome.runtime.getManifest().version}`;
   flagEmojiSupported = detectFlagEmojiSupport();
   await loadPreferences();
   renderLanguages();

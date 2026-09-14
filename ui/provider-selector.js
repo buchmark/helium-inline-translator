@@ -4,6 +4,10 @@ import {
 } from "../src/translation/providerRegistry.js";
 
 const providerSelector = document.getElementById("providerSelector");
+providerSelector.style.setProperty(
+  "--option-count",
+  TRANSLATION_PROVIDERS.length,
+);
 
 function createProviderOption(provider, isSelected) {
   const option = document.createElement("button");
@@ -16,6 +20,10 @@ function createProviderOption(provider, isSelected) {
 }
 
 function renderProviderOptions(selectedProviderId) {
+  const selectedIndex = TRANSLATION_PROVIDERS.findIndex(
+    (provider) => provider.id === selectedProviderId,
+  );
+  providerSelector.style.setProperty("--selected-index", selectedIndex);
   providerSelector.replaceChildren(
     ...TRANSLATION_PROVIDERS.map((provider) =>
       createProviderOption(provider, provider.id === selectedProviderId),
@@ -24,6 +32,7 @@ function renderProviderOptions(selectedProviderId) {
 }
 
 async function selectProvider(providerId) {
+  providerSelector.dataset.animated = "";
   await chrome.storage.sync.set({ translationProvider: providerId });
   renderProviderOptions(providerId);
 }

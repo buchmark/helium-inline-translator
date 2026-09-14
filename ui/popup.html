@@ -1,40 +1,62 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-  <head>
+<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Helium Inline Translator</title>
   <link rel="stylesheet" href="popup.css">
   <script src="i18n.js"></script>
 </head>
-<body class="light">
-  <div class="container">
-    <div class="header">
-      <div class="logo">
-        <div class="logo-icon">
-          <img src="../icons/icon48.png" alt="" />
+<body>
+  <svg class="icon-sprite" aria-hidden="true">
+    <symbol id="icon-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></symbol>
+    <symbol id="icon-moon" viewBox="0 0 24 24"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/></symbol>
+    <symbol id="icon-chevrons-up-down" viewBox="0 0 24 24"><path d="m7 15 5 5 5-5"/><path d="m7 9 5-5 5 5"/></symbol>
+    <symbol id="icon-search" viewBox="0 0 24 24"><path d="m21 21-4.34-4.34"/><circle cx="11" cy="11" r="8"/></symbol>
+    <symbol id="icon-x" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></symbol>
+    <symbol id="icon-heart" viewBox="0 0 24 24"><path d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"/></symbol>
+    <symbol id="icon-settings-2" viewBox="0 0 24 24"><path d="M14 17H5"/><path d="M19 7h-9"/><circle cx="17" cy="17" r="3"/><circle cx="7" cy="7" r="3"/></symbol>
+    <symbol id="icon-text-select" viewBox="0 0 24 24"><path d="M14 21h1"/><path d="M14 3h1"/><path d="M19 3a2 2 0 0 1 2 2"/><path d="M21 14v1"/><path d="M21 19a2 2 0 0 1-2 2"/><path d="M21 9v1"/><path d="M3 14v1"/><path d="M3 9v1"/><path d="M5 21a2 2 0 0 1-2-2"/><path d="M5 3a2 2 0 0 0-2 2"/><path d="M7 12h10"/><path d="M7 16h6"/><path d="M7 8h8"/><path d="M9 21h1"/><path d="M9 3h1"/></symbol>
+    <symbol id="icon-globe" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></symbol>
+  </svg>
+
+  <main class="popup">
+    <div class="intro">
+      <header class="header">
+        <div class="brand">
+          <img class="brand-logo" src="../icons/icon48.png" alt="" />
+          <h1 class="brand-title" data-i18n="popup.title">Helium Inline Translator</h1>
         </div>
-        <span data-i18n="popup.title">Helium Inline Translator</span>
-      </div>
-      <button class="theme-toggle" id="themeToggle">🌙</button>
+        <button type="button" class="icon-button theme-toggle" id="themeToggle">
+          <svg class="icon icon-moon"><use href="#icon-moon"/></svg>
+          <svg class="icon icon-sun"><use href="#icon-sun"/></svg>
+        </button>
+      </header>
+
+      <p class="tagline" data-i18n="popup.description">
+        Traduza sem popups e de forma limpa páginas ou textos selecionados por atalhos rápidos.
+      </p>
     </div>
 
-    <p class="tagline" data-i18n="popup.description">
-      Traduza sem popups e de forma limpa páginas ou textos selecionados por atalhos rápidos.
-    </p>
+    <section class="section language-selector">
+      <h2 class="section-label" data-i18n="popup.selectLanguage">Idioma de Tradução</h2>
+      <button type="button" class="surface language-card" id="selectedLang">
+        <span class="flag" id="langFlag">BR</span>
+        <span class="language-card-name" id="langName">Português (Brasil)</span>
+        <svg class="icon language-card-chevron"><use href="#icon-chevrons-up-down"/></svg>
+      </button>
 
-    <div class="section">
-      <div class="section-label" data-i18n="popup.selectLanguage">Idioma de Tradução</div>
-      <div class="language-selector">
-        <button class="selected-language" id="selectedLang">
-          <div class="left-content">
-            <span class="flag" id="langFlag">BR</span>
-            <span id="langName">Português (Brasil)</span>
-          </div>
-          <span>▼</span>
-        </button>
-        <div class="dropdown" id="dropdown">
-          <input type="text" class="search-box" id="searchBox" placeholder="Pesquisar..." data-i18n-placeholder="popup.search">
+      <div class="language-sheet" id="dropdown">
+        <div class="sheet-header">
+          <label class="search-field">
+            <svg class="icon"><use href="#icon-search"/></svg>
+            <input type="text" class="search-box" id="searchBox" placeholder="Pesquisar..." data-i18n-placeholder="popup.search">
+          </label>
+          <button type="button" class="icon-button" id="closeDropdown" aria-keyshortcuts="Escape">
+            <svg class="icon"><use href="#icon-x"/></svg>
+          </button>
+        </div>
+        <div class="sheet-body">
           <div class="dropdown-section" id="favoritesSection">
             <div class="dropdown-title" data-i18n="popup.favorites">Favoritos</div>
             <div id="favoritesList"></div>
@@ -45,40 +67,44 @@
           </div>
         </div>
       </div>
-    </div>
+    </section>
 
-    <div class="section">
-      <div class="section-label" data-i18n="popup.translationService">Serviço de tradução</div>
+    <section class="section">
+      <h2 class="section-label" data-i18n="popup.translationService">Serviço de tradução</h2>
       <div class="provider-selector" id="providerSelector"></div>
-    </div>
+    </section>
 
-    <div class="section">
-      <div class="section-label" data-i18n="popup.shortcutsSection">Atalhos de Tradução</div>
-      <div class="shortcuts-grid">
-        <div class="shortcut-display">
-          <span class="shortcut-icon">⌨️</span>
-          <div class="shortcut-info">
-            <div class="shortcut-label" data-i18n="popup.shortcutSelection">Traduzir seleção</div>
-            <div class="shortcut-keys">Shift + Alt + Q</div>
-          </div>
+    <section class="section">
+      <div class="section-heading">
+        <h2 class="section-label" data-i18n="popup.shortcutsSection">Atalhos de Tradução</h2>
+        <button type="button" class="icon-button icon-button-small" id="shortcutSettings" title="chrome://extensions/shortcuts" aria-label="chrome://extensions/shortcuts">
+          <svg class="icon"><use href="#icon-settings-2"/></svg>
+        </button>
+      </div>
+      <div class="surface shortcut-list">
+        <div class="shortcut-row">
+          <span class="shortcut-icon">
+            <svg class="icon"><use href="#icon-text-select"/></svg>
+          </span>
+          <span class="shortcut-label" data-i18n="popup.shortcutSelection">Traduzir seleção</span>
+          <span class="key-combo" data-command="translate-selection"></span>
         </div>
-        <div class="shortcut-display">
-          <span class="shortcut-icon">🌐</span>
-          <div class="shortcut-info">
-            <div class="shortcut-label" data-i18n="popup.shortcutPage">Traduzir página</div>
-            <div class="shortcut-keys">Shift + Alt + W</div>
-          </div>
+        <div class="shortcut-row">
+          <span class="shortcut-icon">
+            <svg class="icon"><use href="#icon-globe"/></svg>
+          </span>
+          <span class="shortcut-label" data-i18n="popup.shortcutPage">Traduzir página</span>
+          <span class="key-combo" data-command="translate-page"></span>
         </div>
       </div>
-      <div class="revert-tip" data-i18n="popup.revertTip">Pressione novamente para reverter.</div>
-    </div>
+      <p class="revert-tip" data-i18n="popup.revertTip">Pressione novamente para reverter.</p>
+    </section>
 
-    <div class="footer">
-      <span class="footer-link">v1.0.0</span>
-    </div>
-  </div>
+    <footer class="footer" id="version"></footer>
+  </main>
 
   <script src="popup.js"></script>
   <script type="module" src="provider-selector.js"></script>
+  <script type="module" src="shortcuts.js"></script>
 </body>
 </html>

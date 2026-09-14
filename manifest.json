@@ -21,11 +21,11 @@
   },
   "commands": {
     "translate-selection": {
-      "suggested_key": { "default": "Alt+Shift+Q" },
+      "suggested_key": { "default": "Alt+Shift+Q", "mac": "Option+Shift+Q" },
       "description": "__MSG_contextTranslateSelection__"
     },
     "translate-page": {
-      "suggested_key": { "default": "Alt+Shift+W" },
+      "suggested_key": { "default": "Alt+Shift+W", "mac": "Option+Shift+W" },
       "description": "__MSG_contextTranslatePage__"
     }
   },
