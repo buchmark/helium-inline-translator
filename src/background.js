@@ -129,15 +129,24 @@ async function isPageTranslatedInTab(tabId) {
   }
 }
 
-async function refreshPageMenuForTab(tabId) {
-  updatePageMenuTitle(await isPageTranslatedInTab(tabId));
-}
-
-async function refreshPageMenuForActiveTab() {
+async function getActiveTab() {
   const [tab] = await chrome.tabs.query({
     active: true,
     lastFocusedWindow: true,
   });
+  return tab;
+}
+
+async function refreshPageMenuForTab(tabId) {
+  const isPageTranslated = await isPageTranslatedInTab(tabId);
+  const activeTab = await getActiveTab();
+  if (activeTab?.id === tabId) {
+    updatePageMenuTitle(isPageTranslated);
+  }
+}
+
+async function refreshPageMenuForActiveTab() {
+  const tab = await getActiveTab();
   if (tab) {
     refreshPageMenuForTab(tab.id);
   }
@@ -176,12 +185,9 @@ async function handleTranslationTrigger(triggerId, tabId) {
   try {
     await ensureContentScript(tabId);
     if (triggerId === "translate-page") {
-      chrome.tabs.sendMessage(tabId, { action: "translate-full-page" });
+      await chrome.tabs.sendMessage(tabId, { action: "translate-full-page" });
     } else if (triggerId === "translate-selection") {
-      await chrome.scripting
-        .insertCSS({ target: { tabId }, files: ["css/inline.css"] })
-        .catch((error) => console.error("Error inserting CSS:", error));
-      chrome.tabs.sendMessage(tabId, { action: "translate-selection" });
+      await chrome.tabs.sendMessage(tabId, { action: "translate-selection" });
     }
   } catch (error) {
     console.error("Translation trigger error:", error);

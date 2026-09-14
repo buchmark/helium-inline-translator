@@ -17,6 +17,9 @@ export async function translateTexts(provider, texts, targetLanguage) {
   }
 
   return translatedTexts.map((translatedText, index) => {
+    if (typeof translatedText !== "string" || translatedText === "") {
+      return texts[index];
+    }
     const { leading, trailing } = segments[index];
     return `${leading}${translatedText}${trailing}`;
   });

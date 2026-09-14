@@ -1,10 +1,17 @@
-﻿// src/content.js
-console.log("Helium Inline Translator: Content script v8 loaded and active!");
+// src/content.js
 globalThis.heliumInlineTranslatorLoaded = true;
+
+const BATCH_CHAR_LIMIT = 4500;
+const BATCH_ITEM_LIMIT = 100;
+const MAX_PARALLEL_REQUESTS = 3;
+const EXCLUDED_CONTAINERS = "script, style, noscript, template, textarea";
+const SENTENCE_BREAK = /[.!?]\s+|[。！？\n]/g;
+const WHITESPACE = /\s+/g;
 
 // Global state for full-page translation
 let pageOriginals = new Map();
 let isPageTranslated = false;
+let pageTranslationRun = 0;
 
 // Global state for selection translation
 let selectionOriginals = new Map();
@@ -12,7 +19,6 @@ let lastTranslatedNodes = [];
 let isSelectionTranslated = false;
 
 const translationCache = new Map();
-let translationScope = "";
 
 async function getTranslationScope() {
   const { translationProvider, targetLanguage } =
@@ -41,9 +47,6 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     }
   } else if (request.action === "translate-full-page") {
     if (isPageTranslated) {
-      console.log(
-        "Helium Inline Translator: Page is already translated. Reverting now.",
-      );
       revertPageTranslation();
     } else {
       handleFullPageTranslation();
@@ -53,67 +56,82 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   } else if (request.action === "get-page-state") {
     sendResponse({ isPageTranslated });
   }
-  return true;
 });
+
+function isTranslatableTextNode(node) {
+  const parent = node.parentElement;
+  return (
+    parent !== null &&
+    node.nodeValue.trim() !== "" &&
+    !parent.closest(EXCLUDED_CONTAINERS) &&
+    !parent.isContentEditable &&
+    parent.checkVisibility({ visibilityProperty: true })
+  );
+}
+
+function collectTranslatableTextNodes(root, isInScope = () => true) {
+  const isWanted = (node) => isInScope(node) && isTranslatableTextNode(node);
+  if (root.nodeType === Node.TEXT_NODE) {
+    return isWanted(root) ? [root] : [];
+  }
+
+  const walker = document.createTreeWalker(root, NodeFilter.SHOW_TEXT, {
+    acceptNode: (node) =>
+      isWanted(node) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_SKIP,
+  });
+  const nodes = [];
+  while (walker.nextNode()) {
+    nodes.push(walker.currentNode);
+  }
+  return nodes;
+}
 
 // Handles translating the current user selection
 async function handleSelectionTranslation() {
-  console.log("Helium Inline Translator: handleSelectionTranslation called");
   const selection = window.getSelection();
-
   if (!selection.rangeCount || selection.isCollapsed) {
-    console.log("Helium Inline Translator: No valid selection");
     return;
   }
 
   const range = selection.getRangeAt(0);
-  console.log("Helium Inline Translator: Range obtained", {
-    startContainer: range.startContainer,
-    endContainer: range.endContainer,
-    commonAncestor: range.commonAncestorContainer,
-  });
+  const textNodes = collectTranslatableTextNodes(
+    range.commonAncestorContainer,
+    (node) => range.intersectsNode(node),
+  );
+  if (!textNodes.length) {
+    return;
+  }
 
-  const textNodes = collectTextNodesFromRange(range);
-  console.log(
-    `Helium Inline Translator: Collected ${textNodes.length} text nodes`,
+  const translatedTexts = [];
+  await translateInBatches(
+    textNodes.map((node) => node.nodeValue),
+    await getTranslationScope(),
+    {
+      onTranslated: (index, translatedText) => {
+        translatedTexts[index] = translatedText;
+      },
+    },
   );
 
-  if (!textNodes.length) {
-    console.log("Helium Inline Translator: No text nodes found in selection.");
-    return;
-  }
-
-  let translatedTexts;
-  try {
-    translatedTexts = await requestTranslations(
-      textNodes.map((node) => node.nodeValue),
-    );
-  } catch (error) {
-    console.error(
-      "Helium Inline Translator: Failed to translate selection.",
-      error,
-    );
-    return;
-  }
-
-  // Store originals for undo
   textNodes.forEach((node, index) => {
-    if (node.isConnected) {
-      if (!selectionOriginals.has(node)) {
-        selectionOriginals.set(node, node.nodeValue);
-      }
-      node.nodeValue = translatedTexts[index];
+    if (!node.isConnected || translatedTexts[index] === undefined) {
+      return;
     }
+    if (!selectionOriginals.has(node)) {
+      selectionOriginals.set(node, node.nodeValue);
+    }
+    node.nodeValue = translatedTexts[index];
+    lastTranslatedNodes.push(node);
   });
 
-  lastTranslatedNodes = textNodes;
-  isSelectionTranslated = true;
-  selection.removeAllRanges();
+  if (lastTranslatedNodes.length > 0) {
+    isSelectionTranslated = true;
+    selection.removeAllRanges();
+  }
 }
 
 // Reverts the last selection translation
 function revertSelectionTranslation() {
-  console.log("Helium Inline Translator: Reverting selection translation.");
   for (const node of lastTranslatedNodes) {
     if (node.isConnected && selectionOriginals.has(node)) {
       node.nodeValue = selectionOriginals.get(node);
@@ -124,191 +142,148 @@ function revertSelectionTranslation() {
   isSelectionTranslated = false;
 }
 
-function collectTextNodesFromRange(range) {
-  if (!range) {
-    console.log(
-      "Helium Inline Translator: No range provided to collectTextNodesFromRange",
-    );
-    return [];
-  }
-
-  const textNodes = [];
-  const walker = document.createTreeWalker(
-    range.commonAncestorContainer,
-    NodeFilter.SHOW_TEXT,
-    null,
-  );
-
-  const rootNode = walker.currentNode;
-  if (
-    rootNode &&
-    rootNode.nodeType === Node.TEXT_NODE &&
-    rootNode.nodeValue.trim() &&
-    range.intersectsNode(rootNode)
-  ) {
-    textNodes.push(rootNode);
-  }
-
-  let node;
-  while ((node = walker.nextNode())) {
-    if (range.intersectsNode(node) && node.nodeValue.trim()) {
-      textNodes.push(node);
-    }
-  }
-
-  console.log(
-    `Helium Inline Translator: collectTextNodesFromRange found ${textNodes.length} nodes`,
-  );
-  return textNodes;
-}
-
 // Handles translating all text nodes on the page
 async function handleFullPageTranslation() {
-  console.log(
-    "Helium Inline Translator: Starting full page translation with batching.",
-  );
+  const run = ++pageTranslationRun;
+  const isCurrentRun = () => run === pageTranslationRun;
   setPageTranslated(true);
-  translationScope = await getTranslationScope();
+  const scope = await getTranslationScope();
+  if (!isCurrentRun()) {
+    return;
+  }
 
-  const walker = document.createTreeWalker(
-    document.body,
-    NodeFilter.SHOW_TEXT,
+  const nodes = collectTranslatableTextNodes(document.body);
+  pageOriginals = new Map(nodes.map((node) => [node, node.nodeValue]));
+
+  await translateInBatches(
+    nodes.map((node) => node.nodeValue),
+    scope,
     {
-      acceptNode: (node) => {
-        if (
-          node.parentElement.closest(
-            'script, style, textarea, [contenteditable="true"]',
-          )
-        ) {
-          return NodeFilter.FILTER_REJECT;
+      isCancelled: () => !isCurrentRun(),
+      onTranslated: (index, translatedText) => {
+        if (isCurrentRun() && nodes[index].isConnected) {
+          nodes[index].nodeValue = translatedText;
         }
-        if (node.nodeValue.trim() === "") {
-          return NodeFilter.FILTER_REJECT;
-        }
-        return NodeFilter.FILTER_ACCEPT;
       },
     },
   );
+}
 
-  const nodesToTranslate = [];
-  while (walker.nextNode()) {
-    nodesToTranslate.push(walker.currentNode);
-  }
+async function translateInBatches(
+  texts,
+  scope,
+  { onTranslated, isCancelled = () => false },
+) {
+  const chunks = texts.flatMap((text, textIndex) =>
+    splitLongText(text).map((chunkText, position) => ({
+      textIndex,
+      position,
+      text: chunkText,
+    })),
+  );
+  const translatedChunks = texts.map(() => []);
+  const remainingChunks = texts.map(() => 0);
+  chunks.forEach(({ textIndex }) => remainingChunks[textIndex]++);
 
-  for (const node of nodesToTranslate) {
-    if (!pageOriginals.has(node)) {
-      pageOriginals.set(node, node.nodeValue);
+  const onChunkTranslated = ({ textIndex, position }, translatedText) => {
+    translatedChunks[textIndex][position] = translatedText;
+    remainingChunks[textIndex]--;
+    if (remainingChunks[textIndex] === 0) {
+      onTranslated(textIndex, translatedChunks[textIndex].join(""));
     }
-  }
+  };
 
-  await translateNodesInBatches(nodesToTranslate);
-
-  console.log(
-    `Helium Inline Translator: Finished. Translated ${pageOriginals.size} text nodes.`,
+  const queue = splitIntoBatches(chunks);
+  const translateQueuedBatches = async () => {
+    while (queue.length > 0 && !isCancelled()) {
+      await translateBatch(queue.shift(), scope, onChunkTranslated);
+    }
+  };
+  await Promise.all(
+    Array.from({ length: MAX_PARALLEL_REQUESTS }, translateQueuedBatches),
   );
 }
 
-async function translateNodesInBatches(nodes) {
-  const BATCH_CHAR_LIMIT = 4500;
-  const MAX_PARALLEL_REQUESTS = 3;
-
-  const batches = [];
-  let currentBatch = [];
-  let currentCount = 0;
-
-  for (let i = 0; i < nodes.length; i++) {
-    const node = nodes[i];
-    const nodeText = pageOriginals.get(node) || "";
-
-    if (
-      currentBatch.length > 0 &&
-      currentCount + nodeText.length > BATCH_CHAR_LIMIT
-    ) {
-      batches.push(currentBatch);
-      currentBatch = [];
-      currentCount = 0;
-    }
-
-    currentBatch.push(node);
-    currentCount += nodeText.length;
-  }
-
-  if (currentBatch.length > 0) {
-    batches.push(currentBatch);
-  }
-
-  const queue = batches.slice();
-  const running = [];
-
-  while (queue.length > 0 || running.length > 0) {
-    while (queue.length > 0 && running.length < MAX_PARALLEL_REQUESTS) {
-      const batch = queue.shift();
-      const promise = processBatch(batch).finally(() => {
-        const index = running.indexOf(promise);
-        if (index !== -1) {
-          running.splice(index, 1);
-        }
-      });
-      running.push(promise);
-    }
-
-    if (running.length > 0) {
-      await Promise.race(running);
+async function translateBatch(batch, scope, onChunkTranslated) {
+  const uncachedChunks = [];
+  for (const chunk of batch) {
+    const cachedText = translationCache.get(cacheKey(scope, chunk.text));
+    if (cachedText === undefined) {
+      uncachedChunks.push(chunk);
+    } else {
+      onChunkTranslated(chunk, cachedText);
     }
   }
+  if (uncachedChunks.length === 0) {
+    return;
+  }
 
-  async function processBatch(nodeBatch) {
-    if (!nodeBatch || nodeBatch.length === 0) {
-      return;
-    }
-
-    const originalTexts = nodeBatch.map((n) => pageOriginals.get(n) || "");
-    const cacheKeys = originalTexts.map(
-      (text) => `${translationScope}|${text}`,
+  try {
+    const translatedTexts = await requestTranslations(
+      uncachedChunks.map((chunk) => chunk.text),
     );
-    const results = new Array(nodeBatch.length).fill(undefined);
-
-    const textsToTranslate = [];
-    const translationIndices = [];
-
-    for (let i = 0; i < nodeBatch.length; i++) {
-      const cachedValue = translationCache.get(cacheKeys[i]);
-      if (cachedValue !== undefined) {
-        results[i] = cachedValue;
-      } else {
-        textsToTranslate.push(originalTexts[i]);
-        translationIndices.push(i);
-      }
-    }
-
-    if (textsToTranslate.length > 0) {
-      try {
-        const translatedTexts = await requestTranslations(textsToTranslate);
-        translationIndices.forEach((batchIndex, resultIndex) => {
-          const translatedText = translatedTexts[resultIndex];
-          results[batchIndex] = translatedText;
-          translationCache.set(cacheKeys[batchIndex], translatedText);
-        });
-      } catch (e) {
-        console.error(
-          "Helium Inline Translator: Failed to process a batch.",
-          e,
-        );
-      }
-    }
-
-    for (let i = 0; i < nodeBatch.length; i++) {
-      const nodeToUpdate = nodeBatch[i];
-      if (results[i] !== undefined && nodeToUpdate.isConnected) {
-        nodeToUpdate.nodeValue = results[i];
-      }
-    }
+    uncachedChunks.forEach((chunk, index) => {
+      translationCache.set(cacheKey(scope, chunk.text), translatedTexts[index]);
+      onChunkTranslated(chunk, translatedTexts[index]);
+    });
+  } catch (error) {
+    console.error("Helium Inline Translator: Failed to translate a batch.", error);
   }
+}
+
+function cacheKey(scope, text) {
+  return `${scope}|${text}`;
+}
+
+function splitIntoBatches(chunks) {
+  const batches = [];
+  let batch = [];
+  let batchChars = 0;
+  for (const chunk of chunks) {
+    const isFull =
+      batch.length === BATCH_ITEM_LIMIT ||
+      batchChars + chunk.text.length > BATCH_CHAR_LIMIT;
+    if (batch.length > 0 && isFull) {
+      batches.push(batch);
+      batch = [];
+      batchChars = 0;
+    }
+    batch.push(chunk);
+    batchChars += chunk.text.length;
+  }
+  if (batch.length > 0) {
+    batches.push(batch);
+  }
+  return batches;
+}
+
+function splitLongText(text) {
+  const chunks = [];
+  let start = 0;
+  while (text.length - start > BATCH_CHAR_LIMIT) {
+    const window = text.slice(start, start + BATCH_CHAR_LIMIT);
+    const end =
+      lastMatchEnd(window, SENTENCE_BREAK) ||
+      lastMatchEnd(window, WHITESPACE) ||
+      window.length;
+    chunks.push(text.slice(start, start + end));
+    start += end;
+  }
+  chunks.push(text.slice(start));
+  return chunks;
+}
+
+function lastMatchEnd(text, pattern) {
+  let end = 0;
+  for (const match of text.matchAll(pattern)) {
+    end = match.index + match[0].length;
+  }
+  return end;
 }
 
 // Reverts the full page translation
 function revertPageTranslation() {
-  console.log("Helium Inline Translator: Reverting page translation.");
+  pageTranslationRun++;
   for (const [node, originalText] of pageOriginals.entries()) {
     if (node.isConnected) {
       node.nodeValue = originalText;

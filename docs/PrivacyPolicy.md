@@ -33,9 +33,9 @@ Nothing is sent when you install the Extension, open the popup, change settings,
 | Action | Text sent |
 |--------|-----------|
 | Selection translation | The full text of every text element your selection touches. This can be slightly more than the highlighted part, for example the rest of the sentence. |
-| Page translation | All text in the current page's main document, including text that is hidden from view. Long pages are split into several requests. |
+| Page translation | All displayed text in the current page's main document, including parts you need to scroll to see. Long pages are split into several requests; if you revert before the translation finishes, parts not yet sent are skipped. |
 
-Page translation does not send scripts, styles, text areas, areas marked as editable, form field values (including passwords), or content inside embedded frames.
+Neither action sends hidden text (such as closed menus), scripts, styles, text areas, editable areas such as rich text editors and message drafts, form field values (including passwords), or content inside embedded frames.
 
 Together with the text, each request contains only:
 

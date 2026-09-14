@@ -56,7 +56,7 @@ This extension uses Google Translate, Microsoft Translator, and Yandex Translate
 
 ## Development
 
-- Popup assets live in `ui/` and shared styles in `css/`.
+- Popup assets live in `ui/`.
 - `src/background.js` handles keyboard shortcuts and the context menu, and injects `src/content.js` into the active tab on demand; `src/content.js` applies inline translations.
 - `src/translation/providers/` holds one adapter per translation service; register new ones in `src/translation/providerRegistry.js`.
 - UI strings are defined in `ui/i18n.js`; store messages mirror them under `_locales/`.
@@ -69,7 +69,6 @@ This extension uses Google Translate, Microsoft Translator, and Yandex Translate
 manifest.json
 src/
 ui/
-css/
 icons/
 _locales/
 docs/
