@@ -10,15 +10,20 @@
     "storage",
     "scripting"
   ],
+  "host_permissions": ["https://translate.googleapis.com/*"],
   "background": {
     "service_worker": "src/background.js"
   },
-  "content_scripts": [
-    {
-      "matches": ["<all_urls>"],
-      "js": ["src/content.js"]
+  "commands": {
+    "translate-selection": {
+      "suggested_key": { "default": "Alt+Shift+Q" },
+      "description": "__MSG_contextTranslateSelection__"
+    },
+    "translate-page": {
+      "suggested_key": { "default": "Alt+Shift+W" },
+      "description": "__MSG_contextTranslatePage__"
     }
-  ],
+  },
   "action": {
     "default_popup": "ui/popup.html",
     "default_icon": {
@@ -31,15 +36,5 @@
     "16": "icons/icon16.png",
     "48": "icons/icon48.png",
     "128": "icons/icon128.png"
-  },
-  "web_accessible_resources": [
-    {
-      "resources": ["ui/balloon.html", "ui/balloon.css", "ui/balloon.js"],
-      "matches": ["<all_urls>"]
-    },
-    {
-      "resources": ["icons/flags/*.svg"],
-      "matches": ["<all_urls>"]
-    }
-  ]
+  }
 }

@@ -1,5 +1,6 @@
 ﻿// src/content.js
 console.log("Helium Inline Translator: Content script v8 loaded and active!");
+globalThis.heliumInlineTranslatorLoaded = true;
 
 const TRANSLATION_SEPARATOR = "\n|||HTSEP|||\n";
 const TRANSLATION_SEPARATOR_ALT = "\n\n[-HTS-]\n\n";
@@ -51,48 +52,6 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     revertPageTranslation();
   }
   return true;
-});
-
-// Keyboard shortcuts (fixed)
-document.addEventListener("keydown", async (e) => {
-  const pressedKey =
-    (e.ctrlKey ? "ctrl+" : "") +
-    (e.shiftKey ? "shift+" : "") +
-    (e.altKey ? "alt+" : "") +
-    e.key.toLowerCase();
-
-  console.log("Helium Inline Translator: Key pressed:", pressedKey);
-
-  // Translate/revert selection with Shift+Alt+Q
-  if (pressedKey === "shift+alt+q") {
-    console.log("Helium Inline Translator: Shift+Alt+Q detected!");
-    e.preventDefault();
-    const selection = window.getSelection();
-
-    if (isSelectionTranslated) {
-      console.log("Helium Inline Translator: Reverting selection translation");
-      revertSelectionTranslation();
-    } else if (selection && !selection.isCollapsed) {
-      console.log("Helium Inline Translator: Translating selection");
-      await handleSelectionTranslation();
-    } else {
-      console.log("Helium Inline Translator: No selection to translate");
-    }
-  }
-
-  // Translate/revert full page with Shift+Alt+W
-  if (pressedKey === "shift+alt+w") {
-    console.log("Helium Inline Translator: Shift+Alt+W detected!");
-    e.preventDefault();
-
-    if (isPageTranslated) {
-      console.log("Helium Inline Translator: Reverting page translation");
-      revertPageTranslation();
-    } else {
-      console.log("Helium Inline Translator: Translating full page");
-      await handleFullPageTranslation();
-    }
-  }
 });
 
 // Handles translating the current user selection

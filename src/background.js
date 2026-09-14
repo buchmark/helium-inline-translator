@@ -120,25 +120,39 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
   }
 });
 
-chrome.contextMenus.onClicked.addListener((info, tab) => {
-  if (info.menuItemId === "translate-page") {
-    chrome.tabs.sendMessage(tab.id, { action: "translate-full-page" });
-  } else if (info.menuItemId === "translate-selection") {
-    chrome.scripting
-      .insertCSS({
-        target: { tabId: tab.id },
-        files: ["css/inline.css"],
-      })
-      .then(() => {
-        chrome.tabs.sendMessage(tab.id, {
-          action: "translate-selection",
-        });
-      })
-      .catch((error) => {
-        console.error("Error inserting CSS:", error);
-        chrome.tabs.sendMessage(tab.id, {
-          action: "translate-selection",
-        });
-      });
+async function ensureContentScript(tabId) {
+  const [{ result: isLoaded }] = await chrome.scripting.executeScript({
+    target: { tabId },
+    func: () => globalThis.heliumInlineTranslatorLoaded === true,
+  });
+  if (!isLoaded) {
+    await chrome.scripting.executeScript({
+      target: { tabId },
+      files: ["src/content.js"],
+    });
   }
+}
+
+async function handleTranslationTrigger(triggerId, tabId) {
+  try {
+    await ensureContentScript(tabId);
+    if (triggerId === "translate-page") {
+      chrome.tabs.sendMessage(tabId, { action: "translate-full-page" });
+    } else if (triggerId === "translate-selection") {
+      await chrome.scripting
+        .insertCSS({ target: { tabId }, files: ["css/inline.css"] })
+        .catch((error) => console.error("Error inserting CSS:", error));
+      chrome.tabs.sendMessage(tabId, { action: "translate-selection" });
+    }
+  } catch (error) {
+    console.error("Translation trigger error:", error);
+  }
+}
+
+chrome.commands.onCommand.addListener((command, tab) => {
+  handleTranslationTrigger(command, tab?.id);
+});
+
+chrome.contextMenus.onClicked.addListener((info, tab) => {
+  handleTranslationTrigger(info.menuItemId, tab?.id);
 });
